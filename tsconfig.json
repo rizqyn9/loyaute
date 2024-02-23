@@ -15,10 +15,11 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "types": ["vitest/globals"],
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
-      "@components/*": ["./components/*"]
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@mocks/*": ["./mocks/*"]
     }
   },
   "references": [{ "path": "./tsconfig.node.json" }]

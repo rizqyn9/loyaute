@@ -1,6 +1,6 @@
-import { MERCHANT } from "../../mocks/merchant"
-import { REWARDS } from "../../mocks/reward"
-import { TAGS } from "../../mocks/tags"
+import { MERCHANT } from "@mocks/merchant"
+import { REWARDS } from "@mocks/reward"
+import { TAGS } from "@mocks/tags"
 
 export function IndexPage() {
   return (
