@@ -1,4 +1,3 @@
-import { Logo } from "@components/ui/logo"
 import { MERCHANT } from "../../mocks/merchant"
 import { REWARDS } from "../../mocks/reward"
 import { TAGS } from "../../mocks/tags"
