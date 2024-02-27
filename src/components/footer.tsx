@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { Logo } from "./ui/logo"
 
 const CATEGORIES = [
   { label: "Latests Promo", to: "#latest-promo" },
@@ -22,13 +23,8 @@ export function Footer() {
   return (
     <footer className="max-w-design mx-auto bg-[#0A142F] min-h-[529px] text-white">
       <div className="max-w-content mx-auto py-16 grid grid-cols-6">
-        <div className="flex gap-4 text-4xl col-span-2 items-center mb-auto">
-          <img
-            src="/img/logo.png"
-            alt="logo"
-            className="w-[1em] aspect-[1/1]"
-          />
-          <p className="font-semibold text-white">Loyauté</p>
+        <div className="col-span-2">
+          <Logo classNameText="text-white font-extrabold" />
         </div>
         <div className="flex flex-col gap-12">
           <h3 className="font-semibold">Quick Links</h3>

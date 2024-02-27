@@ -12,6 +12,13 @@ export default {
       "2xl": "1536px",
     },
     extend: {
+      colors: {
+        primary: "#1148D4",
+        disable: "#9A9A9A",
+        stroke: "#D9D9D9",
+        accent: "#0074E0",
+        error: "rgb(220, 38, 38)",
+      },
       fontFamily: {
         "jakarta-sans": ["Plus Jakarta Sans"],
       },

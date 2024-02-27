@@ -1,24 +1,28 @@
-import React from "react"
+import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import { Provider } from "react-redux"
 import { store } from "./app/store"
 import "./assets/styles/index.css"
 import { RouterApps } from "./routes"
 
-const container = document.getElementById("root")
+async function enableMocking() {
+  if (process.env.NODE_ENV !== "development") {
+    return
+  }
 
-if (container) {
-  const root = createRoot(container)
+  const { worker } = await import("./mocks/browser")
 
-  root.render(
-    <React.StrictMode>
+  // `worker.start()` returns a Promise that resolves
+  // once the Service Worker is up and ready to intercept requests.
+  return worker.start()
+}
+
+enableMocking().then(() => {
+  createRoot(document.getElementById("root")!).render(
+    <StrictMode>
       <Provider store={store}>
         <RouterApps />
       </Provider>
-    </React.StrictMode>,
+    </StrictMode>,
   )
-} else {
-  throw new Error(
-    "Root element with ID 'root' was not found in the document. Ensure there is a corresponding HTML element with the ID 'root' in your HTML file.",
-  )
-}
+})

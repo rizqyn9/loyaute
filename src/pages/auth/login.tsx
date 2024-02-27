@@ -1,3 +1,4 @@
+import { InputFloating } from "@/components/ui/input-floating"
 import { type LoginDto, loginDto } from "@/model/login"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -32,6 +33,7 @@ export function LoginPage() {
       </div>
       <form onSubmit={handleOnSubmit}>
         <div className="flex flex-col gap-4 mt-6">
+          <InputFloating label="Email" {...register("email")} />
           <input
             placeholder="Email"
             className="border border-[#D9D9D9] w-full px-4 rounded-lg h-[56px]"

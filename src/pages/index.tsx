@@ -1,3 +1,4 @@
+import { EmblaCarousel } from "@/components/ui/carousel"
 import { MERCHANT } from "@mocks/merchant"
 import { REWARDS } from "@mocks/reward"
 import { TAGS } from "@mocks/tags"
@@ -8,7 +9,7 @@ export function IndexPage() {
       <div
         className="-z-10"
         style={{
-          backgroundImage: "url(/img/home-bg.png)",
+          background: "transparent url(/img/home-bg.png) repeat fixed center",
         }}
       >
         <div className="relative max-w-full min-h-[710px] grid place-content-center">
@@ -38,6 +39,9 @@ export function IndexPage() {
             <p className="text-base mt-3 text-[#959595]">
               Don't miss out! Limited time offer inside!
             </p>
+          </div>
+          <div>
+            <EmblaCarousel />
           </div>
         </section>
       </div>

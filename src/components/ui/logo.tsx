@@ -1,10 +1,34 @@
-export function Logo() {
+import { cn } from "@/utils/cn"
+import { LogoIcon } from "../icon/logo"
+
+type LogoProps = {
+  className?: string
+  classNameText?: string
+  classNameLogo?: string
+  invert?: boolean
+}
+
+export function Logo({
+  className,
+  classNameText,
+  classNameLogo,
+  invert,
+}: LogoProps) {
   return (
-    <div className="flex items-center gap-2 justify-center">
-      <div>
-        <img src="/img/logo.png" alt="logo" />
-      </div>
-      <p className="text-2xl">Loyauté</p>
+    <div className={cn("flex items-center gap-2", className)}>
+      <LogoIcon
+        invert={invert}
+        className={cn(["w-[35px] h-[35px]", classNameLogo])}
+      />
+      <p
+        className={cn([
+          "text-2xl",
+          invert ? "text-white" : "text-black",
+          classNameText,
+        ])}
+      >
+        Loyauté
+      </p>
     </div>
   )
 }
