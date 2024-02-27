@@ -13,15 +13,11 @@
 }
 
 .embla {
-  max-width: 48rem;
   margin: auto;
+  width: 100%;
   --slide-height: 19rem;
-  --slide-spacing: 1rem;
-  --slide-size: 70%;
-}
-
-.embla__viewport {
-  overflow: hidden;
+  --slide-spacing: 1px;
+  --slide-size: 50%;
 }
 
 .embla__container {
@@ -38,8 +34,7 @@
 }
 
 .embla__slide {
-  transition: opacity 0.2s ease-in-out;
-}
-.embla__slide:not(.is-snapped) {
-  opacity: 0.16;
+  flex: 0 0 var(--slide-size);
+  min-width: 0;
+  padding-left: var(--slide-spacing);
 }

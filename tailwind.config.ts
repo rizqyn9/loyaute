@@ -13,11 +13,15 @@ export default {
     },
     extend: {
       colors: {
-        primary: "#1148D4",
+        primary: {
+          DEFAULT: "#007DFC",
+          1: "#007DFC",
+        },
         disable: "#9A9A9A",
         stroke: "#D9D9D9",
         accent: "#0074E0",
         error: "rgb(220, 38, 38)",
+        background: "#F9F9F9",
       },
       fontFamily: {
         "jakarta-sans": ["Plus Jakarta Sans"],

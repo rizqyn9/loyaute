@@ -5,8 +5,9 @@ import { RegisterPage } from "./pages/auth/register"
 import { OtpPage } from "./pages/auth/otp"
 import { IndexPage } from "./pages/index"
 import { Footer } from "./components/footer"
-import { Header } from "./components/header"
 import { DesignSystem } from "./pages/design-system"
+import { Header } from "./components/common/header"
+import { HistroyPage } from "./pages/history"
 
 const router = createBrowserRouter([
   {
@@ -33,13 +34,27 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: (
-      <>
-        <Header />
-        <IndexPage />
-        <Footer />
-      </>
-    ),
+    children: [
+      {
+        path: "",
+        element: (
+          <>
+            <Header />
+            <IndexPage />
+            <Footer />
+          </>
+        ),
+      },
+      {
+        path: "/history",
+        element: (
+          <>
+            <HistroyPage />
+            <Footer />
+          </>
+        ),
+      },
+    ],
   },
 ])
 

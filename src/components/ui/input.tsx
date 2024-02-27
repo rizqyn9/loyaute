@@ -1,56 +1,25 @@
-import { cn } from "@/utils/cn"
-import { type VariantProps, cva } from "class-variance-authority"
 import * as React from "react"
 
-export const inputVariants = cva(
-  cn([
-    "block peer appearance-none rounded-lg",
-    "h-14 px-3 w-full",
-    "border-2 border-stroke placeholder:text-disable",
-    "focus:outline-none focus:border-primary",
-    "text-sm bg-transparent",
-  ]),
-  {
-    variants: {
-      state: {
-        error: "text-error border-error placeholder:text-error/70",
-        disable: "",
-        iddle: "",
-      },
-    },
-    defaultVariants: {
-      state: "iddle",
-    },
-  },
-)
+import { cn } from "@/utils/cn"
 
 export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement>,
-    VariantProps<typeof inputVariants> {
-  isError?: boolean
-}
+  extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, disabled, isError, ...props }, ref) => {
+  ({ className, type, ...props }, ref) => {
     return (
       <input
         type={type}
         className={cn(
-          cn(
-            inputVariants({
-              state: isError ? "error" : "iddle",
-            }),
-          ),
+          "flex h-10 w-full rounded-md border border-input px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
           className,
         )}
         ref={ref}
-        disabled={disabled}
         {...props}
       />
     )
   },
 )
-
 Input.displayName = "Input"
 
 export { Input }

@@ -1,4 +1,4 @@
-import { Input } from "@/components/ui/input"
+import { Input } from "@/components/ui/input-v2"
 import { LogoIcon } from "@/components/icon/logo"
 import { Logo } from "@/components/ui/logo"
 

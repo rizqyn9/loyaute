@@ -1,5 +1,5 @@
 import { cn } from "@/utils/cn"
-import { Input } from "./input"
+import { Input } from "./input-v2"
 import React from "react"
 
 export interface InputProps
