@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form"
 import { useAppDispatch } from "@/app/hooks"
-import { type RegisterDto, registerDto } from "@/model/register"
+
 import { zodResolver } from "@hookform/resolvers/zod"
 import { registerAction } from "@/features/register/slice"
 import { Link, useNavigate } from "react-router-dom"
@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/select"
 import { AuthButton } from "@/components/views/auth/auth-button"
 import { AlertMessage } from "@/components/views/auth/alert-message"
+import { type RegisterDto, registerDto } from "@/features/auth/auth-dto"
 
 export function RegisterPage() {
   const navigate = useNavigate()
