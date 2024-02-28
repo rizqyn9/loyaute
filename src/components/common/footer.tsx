@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
-import { Logo } from "./ui/logo"
-import { Button } from "./ui/button"
+import { Logo } from "../ui/logo"
+import { Button } from "../ui/button"
 
 const CATEGORIES = [
   { label: "Latests Promo", to: "#latest-promo" },
