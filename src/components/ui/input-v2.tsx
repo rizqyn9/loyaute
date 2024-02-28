@@ -8,7 +8,7 @@ export const inputVariants = cva(
     "h-14 px-3 w-full",
     "border-2 border-stroke placeholder:text-disable",
     "focus:outline-none focus:border-primary",
-    "text-sm bg-transparent",
+    "text-sm bg-transparent caret-black",
   ]),
   {
     variants: {
@@ -24,7 +24,7 @@ export const inputVariants = cva(
   },
 )
 
-export interface InputProps
+interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement>,
     VariantProps<typeof inputVariants> {
   isError?: boolean

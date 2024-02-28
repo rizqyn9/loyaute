@@ -22,6 +22,10 @@ export default {
         accent: "#0074E0",
         error: "rgb(220, 38, 38)",
         background: "#F9F9F9",
+        neutral: {
+          200: "#9A9A9A",
+          500: "#232323",
+        },
       },
       fontFamily: {
         "jakarta-sans": ["Plus Jakarta Sans"],

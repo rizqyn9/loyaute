@@ -2,7 +2,7 @@ import { cn } from "@/utils/cn"
 import { type VariantProps, cva } from "class-variance-authority"
 
 const badgeVariant = cva(
-  "rounded-full flex p-4 min-w-[4rem] items-center justify-center gap-2 transition-colors duration-300",
+  "rounded-full flex p-4 py-3 min-w-[4rem] items-center justify-center gap-2 transition-colors duration-300",
   {
     variants: {
       state: {
@@ -16,7 +16,7 @@ const badgeVariant = cva(
   },
 )
 
-export interface BadgeFilterProps
+interface BadgeFilterProps
   extends React.HTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof badgeVariant> {
   label: string
@@ -24,9 +24,9 @@ export interface BadgeFilterProps
 }
 
 export function BadgeFilter(props: BadgeFilterProps) {
-  const { label, icon, state, className } = props
+  const { label, icon, state, className, ...rest } = props
   return (
-    <button className={cn(badgeVariant({ state }), className)}>
+    <button className={cn(badgeVariant({ state }), className)} {...rest}>
       {icon && (
         <div className="w-[18px] aspect-[1/1]">
           <img width={16} height={16} src={icon} alt={label} />

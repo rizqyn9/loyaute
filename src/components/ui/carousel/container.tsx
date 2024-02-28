@@ -1,7 +1,8 @@
 import { CarouselItem } from "./item"
-import { useCallback, useEffect, useRef } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import type { EmblaCarouselType, EmblaEventType } from "embla-carousel"
 import useEmblaCarousel from "embla-carousel-react"
+import { CarouselPagination } from "./pagination"
 
 const MOCK =
   "https://images.unsplash.com/photo-1524697958400-63970dc9e178?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDJ8Ym84alFLVGFFMFl8fGVufDB8fHx8fA%3D%3D"
@@ -12,6 +13,7 @@ const numberWithinRange = (number: number, min: number, max: number): number =>
   Math.min(Math.max(number, min), max)
 
 export function EmblaCarousel() {
+  const [selectedIndex, setSelectedIndex] = useState(0)
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
   })
@@ -70,6 +72,10 @@ export function EmblaCarousel() {
     [],
   )
 
+  const onSelectedIndex = useCallback(() => {
+    setSelectedIndex(emblaApi?.selectedScrollSnap() || 0)
+  }, [emblaApi])
+
   useEffect(() => {
     if (!emblaApi) return
 
@@ -82,17 +88,28 @@ export function EmblaCarousel() {
       .on("reInit", setTweenFactor)
       .on("reInit", tweenScale)
       .on("scroll", tweenScale)
-  }, [emblaApi, setTweenFactor, setTweenNodes, tweenScale])
+      .on("select", onSelectedIndex)
+      .on("reInit", onSelectedIndex)
+  }, [emblaApi, setTweenFactor, setTweenNodes, tweenScale, onSelectedIndex])
 
   return (
-    <div className="embla">
-      <div className="embla__viewport overflow-hidden" ref={emblaRef}>
-        <div className="embla__container">
-          {Array.from({ length: 5 }, (_, i) => MOCK).map(x => (
-            <CarouselItem img={x} />
-          ))}
+    <>
+      <div className="embla">
+        <div className="embla__viewport overflow-hidden" ref={emblaRef}>
+          <div className="embla__container">
+            {Array.from({ length: 5 }, (_, i) => MOCK).map((x, i) => (
+              <CarouselItem img={x} key={i} />
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+      <CarouselPagination
+        idxActive={selectedIndex}
+        amount={5}
+        onNext={() => emblaApi?.scrollNext()}
+        onPrev={() => emblaApi?.scrollPrev()}
+        onSelect={idx => emblaApi?.scrollTo(idx)}
+      />
+    </>
   )
 }

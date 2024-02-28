@@ -15,7 +15,7 @@ export function Logo({
   invert,
 }: LogoProps) {
   return (
-    <div className={cn("flex items-center gap-2", className)}>
+    <div className={cn("flex items-center font-extrabold gap-2", className)}>
       <LogoIcon
         invert={invert}
         className={cn(["w-[35px] h-[35px]", classNameLogo])}

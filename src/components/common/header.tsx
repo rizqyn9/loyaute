@@ -8,6 +8,8 @@ import { Logo } from "../ui/logo"
 import { cn } from "@/utils/cn"
 import { Container } from "../ui/container"
 import { Link, useLocation } from "react-router-dom"
+import { useAppSelector } from "@/app/hooks"
+import { Button } from "../ui/button"
 
 export function Header() {
   const invert = useLocation().pathname === "/"
@@ -28,7 +30,7 @@ export function Header() {
         />
         <nav
           className={cn(
-            "flex items-center gap-8 fill-white col-span-4 place-self-center",
+            "flex items-center gap-12 fill-white col-span-4 place-self-center",
             invert ? "fill-white" : "fill-black",
           )}
         >
@@ -67,24 +69,34 @@ function NavButton(props: {
 }
 
 function HeaderProfile(props: { className?: string }) {
+  const { isAuthenticated, userData } = useAppSelector(state => state.auth)
+
   return (
     <div className={cn("flex gap-2 items-center justify-end", props.className)}>
-      <button className="hover:text-black/50">
-        <IconBell />
-      </button>
-      <div className="text-right ml-3">
-        <p className="text-xs font-thin">Good morning,</p>
-        <p className="font-semibold text-xl whitespace-nowrap line-clamp-1">
-          Johan Doe
-        </p>
-      </div>
-      <div className="relative w-[3rem] flex-shrink aspect-[1/1] overflow-hidden rounded-lg">
-        <img
-          className="w-full"
-          src="https://images.unsplash.com/photo-1708443683295-5b9b4a125687?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMHx8fGVufDB8fHx8fA%3D%3D"
-          alt=""
-        />
-      </div>
+      {isAuthenticated && !!userData ? (
+        <>
+          <button className="hover:text-black/50">
+            <IconBell />
+          </button>
+          <div className="text-right ml-3">
+            <p className="text-xs font-thin">Good morning,</p>
+            <p className="font-semibold text-xl whitespace-nowrap line-clamp-1">
+              {userData.username}
+            </p>
+          </div>
+          <div className="relative w-[3rem] flex-shrink aspect-[1/1] overflow-hidden rounded-lg">
+            <img
+              className="w-full"
+              src="https://images.unsplash.com/photo-1708443683295-5b9b4a125687?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMHx8fGVufDB8fHx8fA%3D%3D"
+              alt=""
+            />
+          </div>
+        </>
+      ) : (
+        <Link to="/auth/login">
+          <Button className="bg-primary text-white">Login</Button>
+        </Link>
+      )}
     </div>
   )
 }

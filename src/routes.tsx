@@ -4,10 +4,9 @@ import { AuthLayout } from "./pages/auth/_layout"
 import { RegisterPage } from "./pages/auth/register"
 import { OtpPage } from "./pages/auth/otp"
 import { IndexPage } from "./pages/index"
-import { Footer } from "./components/footer"
 import { DesignSystem } from "./pages/design-system"
-import { Header } from "./components/common/header"
 import { HistroyPage } from "./pages/history"
+import { DashboardLayout } from "./pages/dashboard/_layout"
 
 const router = createBrowserRouter([
   {
@@ -34,25 +33,15 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
+    element: <DashboardLayout />,
     children: [
       {
         path: "",
-        element: (
-          <>
-            <Header />
-            <IndexPage />
-            <Footer />
-          </>
-        ),
+        element: <IndexPage />,
       },
       {
         path: "/history",
-        element: (
-          <>
-            <HistroyPage />
-            <Footer />
-          </>
-        ),
+        element: <HistroyPage />,
       },
     ],
   },

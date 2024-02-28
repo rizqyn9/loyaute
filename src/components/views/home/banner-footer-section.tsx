@@ -2,6 +2,7 @@ import { IconPlayStore } from "@/components/icon/play-store"
 import { ButtonIcon } from "@/components/ui/button/button-icon"
 import { Container } from "@/components/ui/container"
 import { IconAppStore } from "@/components/icon/app-store"
+import { Logo } from "@/components/ui/logo"
 
 export function BannerFooterSection() {
   return (
@@ -15,24 +16,24 @@ export function BannerFooterSection() {
       }}
     >
       <div className="grid grid-cols-2 w-content mx-auto text-white h-full">
-        <div className="flex flex-col gap-4 my-auto">
-          <div className="flex items-center gap-2">
-            <img src="/img/logo-inverse.png" alt="logo" />
-            <p className="text-2xl font-semibold">Loyauté</p>
-          </div>
-          <h2 className="text-[40px] font-semibold w-3/4">
+        <div className="flex flex-col gap-5 my-auto">
+          <Logo invert classNameText="text-[30px] font-medium" />
+          <h2 className="text-[40px] font-semibold w-5/6">
             Get Instant Access: Download Now!
           </h2>
-          <p className="text-[16px] w-3/4">
-            Download our <strong>Loyauté </strong>now to unlock exclusive
-            promotions and explore exciting features
+          <p className="text-[16px] font-normal w-3/4">
+            Download our <strong className="font-bold">Loyauté </strong>now to
+            unlock exclusive promotions and explore exciting features
           </p>
-          <div className="flex flex-wrap gap-4">
-            <ButtonIcon icon={<IconPlayStore />}>Play Store</ButtonIcon>
-            <ButtonIcon icon={<IconAppStore />}>App Store</ButtonIcon>
+          <div className="flex flex-wrap gap-4 mt-6">
+            <ButtonIcon className="border-2" icon={<IconPlayStore />}>
+              Play Store
+            </ButtonIcon>
+            <ButtonIcon className="border-2" icon={<IconAppStore />}>
+              App Store
+            </ButtonIcon>
           </div>
         </div>
-        <div className="relative h-full w-full overflow-hidden"></div>
         <img
           alt="footer"
           src="/img/bg-footer.png"

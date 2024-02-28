@@ -15,7 +15,7 @@ export function OtpInput({ onChange, value }: OtpInputProps) {
         <div className="w-[4rem] rounded-md aspect-[1/1] border border-[#D9D9D9] flex items-center justify-center">
           <input
             {...props}
-            className="mx-auto w-[1rem] text-black text-2xl focus:outline-none"
+            className="mx-auto w-[1rem] select-none text-black text-2xl focus:outline-none bg-transparent"
           />
         </div>
       )}

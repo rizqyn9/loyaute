@@ -1,13 +1,6 @@
-type RewardProps = {
-  name: string
-  thumbnail: string
-  point: number
-  merchant: {
-    name: string
-    icon?: string
-  }
-}
+import type { RewardDto } from "@/features/reward/reward-dto"
 
+type RewardProps = RewardDto
 export function CardReward(props: RewardProps) {
   const { name, thumbnail, point, merchant } = props
   return (
@@ -21,7 +14,7 @@ export function CardReward(props: RewardProps) {
         {merchant.icon && (
           <img
             src={merchant.icon}
-            className="w-[24px] aspect-[1/1]"
+            className="w-[24px] aspect-[1/1] object-cover object-center"
             alt={merchant.name}
           />
         )}

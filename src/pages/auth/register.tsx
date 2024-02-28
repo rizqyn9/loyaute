@@ -1,24 +1,37 @@
 import { useForm } from "react-hook-form"
-import { Logo } from "@components/ui/logo"
 import { useAppDispatch } from "@/app/hooks"
 import { type RegisterDto, registerDto } from "@/model/register"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { registerAction } from "@/features/register/slice"
-import { useNavigate } from "react-router-dom"
-import { useEffect } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { AuthTitle } from "@/components/views/auth/auth-title"
+import { InputAuth } from "@/components/views/auth/auth-input"
+import { Eye, EyeOff } from "lucide-react"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { AuthButton } from "@/components/views/auth/auth-button"
+import { AlertMessage } from "@/components/views/auth/alert-message"
 
 export function RegisterPage() {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
+  const [passwordVisible, setPasswordVisible] = useState<boolean>(false)
 
-  const { register, handleSubmit } = useForm<RegisterDto>({
-    resolver: zodResolver(registerDto),
-    defaultValues: {
-      phoneNumber: {
-        prefix: "+62",
+  const { register, handleSubmit, formState, setValue, getValues } =
+    useForm<RegisterDto>({
+      resolver: zodResolver(registerDto),
+      defaultValues: {
+        phoneNumber: {
+          prefix: "+62",
+        },
       },
-    },
-  })
+    })
 
   const handleOnSubmit = handleSubmit(data => {
     dispatch(registerAction.submit(data))
@@ -29,51 +42,87 @@ export function RegisterPage() {
     dispatch(registerAction.reset())
   }, [dispatch])
 
+  const { isDirty, isValid, errors } = formState
+  const isSubmitDisable = !isDirty || !isValid
+
   return (
     <>
-      <Logo />
-      <div className="text-center mt-8">
-        <h1 className="text-[29px] font-bold">Create an account</h1>
-        <p className="text-sm text-[#9A9A9A] leading-6 w-4/6 mx-auto">
-          New around here? Awesome choice! Let's make it official.
-        </p>
-      </div>
+      <AuthTitle
+        title="Create an account"
+        desc="New around here? Awesome choice! Let's make it official."
+      />
       <form onSubmit={handleOnSubmit}>
-        <div className="flex flex-col gap-4 mt-6">
-          <input
-            placeholder="Name"
-            className="border border-[#D9D9D9] w-full px-4 rounded-lg h-[56px]"
+        <div className="flex flex-col gap-2 mt-6">
+          <InputAuth
+            label="Name"
+            error={errors.name?.message}
+            autoComplete="off"
             {...register("name")}
           />
-          <input
-            placeholder="Email"
-            className="border border-[#D9D9D9] w-full px-4 rounded-lg h-[56px]"
+          <InputAuth
+            label="Email"
+            error={errors.email?.message}
+            autoComplete="off"
             {...register("email")}
           />
-          <input
-            placeholder="Phone Number"
-            className="border border-[#D9D9D9] w-full px-4 rounded-lg h-[56px]"
-            {...register("phoneNumber.value")}
-          />
-          <input
-            placeholder="Password"
-            className="border border-[#D9D9D9] w-full px-4 rounded-lg h-[56px]"
-            {...register("password")}
-          />
-
-          <p className="text-sm text-[#9A9A9A]">
-            Forgot password?
-            <span className="ml-1 text-[#007DFC]">Reset Password</span>
-          </p>
-          <button
-            type="submit"
-            className="bg-[#007DFC] h-10 rounded-lg text-base text-white mt-6"
+          <InputAuth
+            label="Phone Number"
+            labelClassName="peer-placeholder-shown:translate-x-[4.5rem]"
+            className="pl-[4.5rem]"
+            error={errors.phoneNumber?.value?.message}
+            {...register("phoneNumber.value", {
+              setValueAs(value) {
+                return value.replace(/\D/g, "")
+              },
+            })}
           >
+            <Select
+              onValueChange={val => setValue("phoneNumber.prefix", val)}
+              value={getValues("phoneNumber.prefix")}
+            >
+              <SelectTrigger className="w-[48px] p-0 absolute top-0 translate-y-7 left-3 border-none">
+                <SelectValue className="text-sm" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="+62">+62</SelectItem>
+              </SelectContent>
+            </Select>
+          </InputAuth>
+          <InputAuth
+            label="Password"
+            {...register("password")}
+            type={passwordVisible ? "text" : "password"}
+            className="pr-12"
+            error={errors.password?.message}
+          >
+            <button
+              type="button"
+              onClick={() => setPasswordVisible(x => !x)}
+              className="absolute right-3 top-0 translate-y-9 text-[#9A9A9A]"
+            >
+              {passwordVisible ? <Eye /> : <EyeOff />}
+            </button>
+          </InputAuth>
+
+          <p className="text-sm text-neutral-200 mt-3">
+            Forgot password?
+            <span className="ml-1 text-primary">Reset Password</span>
+          </p>
+
+          <AlertMessage msg={errors.root?.message} className="my-2" />
+
+          <AuthButton disabled={isSubmitDisable} type="submit">
             Create Account
-          </button>
-          <p className="text-sm text-center text-[#9A9A9A]">
-            Haven’t registered yet?
-            <span className="ml-2 text-[#007DFC]">Register</span>
+          </AuthButton>
+
+          <p className="text-sm text-center text-neutral-200">
+            Already have account ?
+            <Link
+              to="/auth/login"
+              className="ml-2 text-primary hover:underline"
+            >
+              Login
+            </Link>
           </p>
         </div>
       </form>

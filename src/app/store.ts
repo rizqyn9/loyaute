@@ -1,11 +1,11 @@
 import type { Action, ThunkAction } from "@reduxjs/toolkit"
 import { combineSlices, configureStore } from "@reduxjs/toolkit"
 import { setupListeners } from "@reduxjs/toolkit/query"
-import { counterSlice } from "../features/counter/counterSlice"
-import { quotesApiSlice } from "../features/quotes/quotesApiSlice"
 import { registerSlice } from "@/features/register/slice"
+import { authSlice } from "@/features/auth/auth-slice"
+import { dashboardSlice } from "@/features/dashboard/dashboard-slice"
 
-const rootReducer = combineSlices(counterSlice, quotesApiSlice, registerSlice)
+const rootReducer = combineSlices(registerSlice, authSlice, dashboardSlice)
 
 export type RootState = ReturnType<typeof rootReducer>
 
@@ -13,7 +13,7 @@ export const makeStore = (preloadedState?: Partial<RootState>) => {
   const store = configureStore({
     reducer: rootReducer,
     middleware: getDefaultMiddleware => {
-      return getDefaultMiddleware().concat(quotesApiSlice.middleware)
+      return getDefaultMiddleware()
     },
     preloadedState,
   })
