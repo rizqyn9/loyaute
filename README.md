@@ -1,3 +1,14 @@
+## Deployment
+
+[Link deployment](https://loyaute.rdev.space/)
+
+## Login
+
+email: (random but must valid email)
+password: "valid"
+
+`/src/mocks/browser.tsx`
+
 ## Technologies
 
 - Typescript
