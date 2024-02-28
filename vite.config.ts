@@ -7,6 +7,7 @@ import Unfonts from "unplugin-fonts/vite"
 export default defineConfig({
   server: {
     open: true,
+    port: 3005,
   },
   test: {
     globals: true,
