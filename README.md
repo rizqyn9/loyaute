@@ -12,11 +12,11 @@ password: "valid"
 
 ## Technologies
 
-- Typescript
-- Vite
-- React
-- Redux-Toolkit
-- MSW
+- [Typescript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [React](https://react.dev/)
+- [Redux-Toolkit](https://redux-toolkit.js.org/)
+- [MSW](https://mswjs.io/)
 
 ## Folder structure
 
