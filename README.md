@@ -1,5 +1,6 @@
 ## Deployment
 
+Running as development
 [Link deployment](https://loyaute.rdev.space/)
 
 ## Login
