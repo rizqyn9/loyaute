@@ -9,7 +9,7 @@ const rootReducer = combineSlices(registerSlice, authSlice, dashboardSlice)
 
 export type RootState = ReturnType<typeof rootReducer>
 
-export const makeStore = (preloadedState?: Partial<RootState>) => {
+const makeStore = (preloadedState?: Partial<RootState>) => {
   const store = configureStore({
     reducer: rootReducer,
     middleware: getDefaultMiddleware => {
