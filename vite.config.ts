@@ -10,12 +10,6 @@ export default defineConfig({
     host: "0.0.0.0",
     port: 3005,
   },
-  test: {
-    globals: true,
-    environment: "jsdom",
-    setupFiles: "src/setupTests",
-    mockReset: true,
-  },
   resolve: {
     alias: {
       "@": resolve(__dirname, "src"),
