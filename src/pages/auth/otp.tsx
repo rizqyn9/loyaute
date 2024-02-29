@@ -40,7 +40,7 @@ export function OtpPage() {
         title="Enter OTP Verification"
         desc={
           <>
-            We’ve sent an OTP code to{" "}
+            We’ve sent an OTP code to
             <span className="whitespace-nowrap">{phoneNumber}</span>
           </>
         }

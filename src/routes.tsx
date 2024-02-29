@@ -6,11 +6,14 @@ import { OtpPage } from "./pages/auth/otp"
 import { IndexPage } from "./pages/index"
 import { HistroyPage } from "./pages/history"
 import { DashboardLayout } from "./pages/dashboard/_layout"
+import { DetailsPage } from "./pages/dashboard/details"
+import { PageNotFound } from "./pages/404"
 
 const router = createBrowserRouter([
   {
     path: "/auth",
     element: <AuthLayout />,
+
     children: [
       {
         path: "login",
@@ -29,6 +32,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <DashboardLayout />,
+    errorElement: <PageNotFound />,
     children: [
       {
         path: "",
@@ -37,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "/history",
         element: <HistroyPage />,
+      },
+      {
+        path: "/details",
+        element: <DetailsPage />,
       },
     ],
   },

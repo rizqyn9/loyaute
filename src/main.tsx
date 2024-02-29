@@ -5,9 +5,10 @@ import "./assets/styles/index.css"
 import "unfonts.css"
 
 async function enableMocking() {
-  if (process.env.NODE_ENV !== "development") {
-    return
-  }
+  // Currently force enabled
+  // if (process.env.NODE_ENV !== "development") {
+  //   return
+  // }
 
   const { worker } = await import("./mocks/browser")
 

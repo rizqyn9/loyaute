@@ -1,11 +1,18 @@
-FROM node:18-alpine
-
+FROM node:18-alpine as base
 WORKDIR /app
 
-COPY package.json .
+# Build dependencies
+FROM base as deps
 
-RUN npm install
+ADD package.json pnpm-lock.yaml ./
+RUN npm install --include=dev
 
+# Prod dependencies
+FROM base as build
+
+COPY --from=deps /app/node_modules /app/node_modules
 COPY . .
 
-CMD [ "npm", "run", "dev" ]
+RUN npm run build
+
+CMD [ "npm", "run", "preview" ]
