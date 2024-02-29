@@ -43,7 +43,7 @@ const router = createBrowserRouter([
         element: <HistroyPage />,
       },
       {
-        path: "/details",
+        path: "/details/:id",
         element: <DetailsPage />,
       },
     ],

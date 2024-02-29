@@ -21,13 +21,14 @@ export function Header() {
       )}
     >
       <Container className={cn("grid grid-cols-8 h-full")}>
-        <Logo
-          classNameText={cn(
-            "font-extrabold",
-            invert ? "text-white" : "text-black",
-          )}
-          className="col-span-2"
-        />
+        <Link className="block my-auto col-span-2" to={"/"}>
+          <Logo
+            classNameText={cn(
+              "font-extrabold",
+              invert ? "text-white" : "text-black",
+            )}
+          />
+        </Link>
         <nav
           className={cn(
             "flex items-center gap-12 fill-white col-span-4 place-self-center",
